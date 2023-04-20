@@ -14,4 +14,11 @@ class DirectorsController < ApplicationController
     render({ :template => "director_templates/youngest.html.erb"})
   end
 
+  def bio
+    # @bio = Director.bio
+    director_id = params.fetch("id")
+
+    @the_director = Director.where({ :id => director_id }).at(0)
+    render({ :template => "director_templates/bio.html.erb"})
+  end
 end
