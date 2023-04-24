@@ -11,9 +11,9 @@ class MoviesController < ApplicationController
     movie_id = params.fetch("id")
 
     @the_movie = Movie.where({ :id => movie_id }).at(0)
-    @director_id = Movie.where({ :id => movie_id }).at(0).director_id
+    @director_id = @the_movie.director_id
     @the_director = Director.where({ :id => @director_id }).at(0)
-
+p @the_director 
     render({ :template => "movie_templates/bio.html.erb"})
   end
 end

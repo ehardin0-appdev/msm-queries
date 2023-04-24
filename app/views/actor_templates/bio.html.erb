@@ -64,17 +64,24 @@
 <table border="1">
 <% @filmography.each do |a_character| %>
 
+        <% movie = Movie.where({ :id => a_character.movie_id}).at(0) %>
+        <% director_id = movie.director_id %>
+        <% director = Director.where({ :id => director_id}).at(0) %>
+
     <tr>
       <td>
-        <%= a_character.movie_id %>
-      </td>
+        <%= movie.title %>
+       </td>
        <td>
+       <%= movie.year %>
+      </td>
+      <td>
+        <%= director.name %>
+      </td>
+      <td>
         <%= a_character.name %>
       </td>
       <td>
-        <%= %>
-      </td>
-       <td>
         <a href="/movies/<%= a_character.movie_id %>">Show details</a>
       </td>
     </tr>
